@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net8.0;netstandard2.0</TargetFrameworks>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    </PropertyGroup>
+
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+        <PackageReference Include="PowerShellStandard.Library" version="5.1.*" PrivateAssets="All"/>
+        <PackageReference Include="Grpc.Net.Client.Web" Version="2.67.0"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+        <PackageReference Include="System.Management.Automation" version="7.4.*"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Grpc.Net.Client" Version="2.67.0"/>
+        <PackageReference Include="Google.Protobuf" Version="3.29.0"/>
+        <PackageReference Include="Grpc.Tools" Version="2.67.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+        <ProtoBuf Include="..\..\Grpc\Protos\greet.proto" GrpcServices="Client"/>
+    </ItemGroup>
+
+</Project>

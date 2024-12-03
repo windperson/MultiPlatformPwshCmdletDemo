@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PowerShell", "PowerShell", "{9EEFA39D-B900-4E74-A507-F07DF0982AE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreeterCmdlet", "Pwsh\GreeterCmdlet\GreeterCmdlet.csproj", "{B9CDBD9A-73AB-4277-ADFB-2DF749B9C22C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Grpc", "Grpc", "{475E94CA-4842-45F8-A344-F903EFD2EC45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreetingGrpcService", "Grpc\GreetingGrpcService\GreetingGrpcService.csproj", "{5DB8C2B8-1570-48D7-8E5A-8FEAE58F1565}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9CDBD9A-73AB-4277-ADFB-2DF749B9C22C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9CDBD9A-73AB-4277-ADFB-2DF749B9C22C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9CDBD9A-73AB-4277-ADFB-2DF749B9C22C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9CDBD9A-73AB-4277-ADFB-2DF749B9C22C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DB8C2B8-1570-48D7-8E5A-8FEAE58F1565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DB8C2B8-1570-48D7-8E5A-8FEAE58F1565}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DB8C2B8-1570-48D7-8E5A-8FEAE58F1565}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DB8C2B8-1570-48D7-8E5A-8FEAE58F1565}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B9CDBD9A-73AB-4277-ADFB-2DF749B9C22C} = {9EEFA39D-B900-4E74-A507-F07DF0982AE7}
+		{5DB8C2B8-1570-48D7-8E5A-8FEAE58F1565} = {475E94CA-4842-45F8-A344-F903EFD2EC45}
+	EndGlobalSection
+EndGlobal

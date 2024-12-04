@@ -1,0 +1,58 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md.
+            "name": "Launch gRPC service",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build grpc service",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/Grpc/GreetingGrpcService/bin/Debug/net8.0/GreetingGrpcService.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Grpc/GreetingGrpcService",
+            "stopAtEntry": false,
+            "console": "integratedTerminal",
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": "Debug Pwsh module",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build PowerShell Cmdlet",
+            "program": "pwsh",
+            "args":[
+             "-NoExit",
+             "-NoProfile",
+             "-Command",
+             "Import-Module ${workspaceFolder}/Pwsh/GreeterCmdlet/bin/Debug/net8.0/GreeterCmdlet.dll"   
+            ],
+            "cwd": "${workspaceFolder}/Pwsh/GreeterCmdlet",
+            "stopAtEntry": false,
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug Windows PowerShell module",
+            "type": "clr",
+            "request": "launch",
+            "preLaunchTask": "build PowerShell Cmdlet",
+            "program": "powershell",
+            "args":[
+             "-NoExit",
+             "-NoProfile",
+             "-Command",
+             "Import-Module ${workspaceFolder}/Pwsh/GreeterCmdlet/bin/Debug/netstandard2.0/GreeterCmdlet.dll"   
+            ],
+            "cwd": "${workspaceFolder}/Pwsh/GreeterCmdlet",
+            "stopAtEntry": false,
+            "console": "integratedTerminal"
+        }
+    ]
+}

@@ -14,7 +14,7 @@ public class GreeterService : Greeter.GreeterBase
 
     public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)
     {
-        var postFix = string.IsNullOrEmpty(request.Name) ? "World" : $"{request.Name}";
+        var postFix = string.IsNullOrEmpty(request.Name) ? "World" : request.Name;
         _logger.LogInformation("Returning Hello message to \"{postFix}\"", postFix);
         return Task.FromResult(new HelloReply
         {

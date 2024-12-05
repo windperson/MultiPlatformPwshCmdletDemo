@@ -19,5 +19,14 @@
     <ItemGroup>
       <ProjectReference Include="..\..\Grpc\GreetingClientLib\GreetingClientLib.csproj" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <None Update="GreeterCmdlet.psd1">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="GreeterCmdlet.psm1">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
 
 </Project>

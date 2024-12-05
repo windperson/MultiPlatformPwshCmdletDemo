@@ -1,12 +1,13 @@
 ﻿using System.Management.Automation;
 using GreetingClientLib;
-using GreetingGrpcService;
-using Grpc.Net.Client;
+using GreetingClientLib.DTOs;
 
 namespace GreeterCmdlet;
 
-[Cmdlet(VerbsCommon.Get, "GrpcGreeter")]
-public class GreeterClientCmdlet : PSCmdlet
+// ReSharper disable once UnusedType.Global
+[Cmdlet(VerbsCommunications.Send, "GreeterGrpcApi")]
+[OutputType(typeof(GreetingResponse))]
+public class CallGreetingClientLibCmdlet : PSCmdlet
 {
     // ReSharper disable once MemberCanBePrivate.Global
     [Parameter(Mandatory = true, Position = 0)]
@@ -14,15 +15,15 @@ public class GreeterClientCmdlet : PSCmdlet
 
     // ReSharper disable once MemberCanBePrivate.Global
     [Parameter(Mandatory = false)] 
-    public string Name { get; set; } = string.Empty;
-
+    public GreetingRequest Request { get; set; } = null!; 
+    
     protected override void ProcessRecord()
     {
         try
         {
             var client = new GreetingClient(){ ServerUrl = $"https://{Server}" };
-            var reply = client.GetGreeting(new HelloRequest { Name = Name });
-            WriteObject(reply.Message);
+            var reply = client.GetGreeting(Request);
+            WriteObject(reply);
         }
         catch (Exception ex)
         {

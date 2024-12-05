@@ -7,15 +7,21 @@ param(
 
 $script:ServerAddress = $Server
 
-# TODO: how to correctly load right version of binary cmdlet when publish the module?
-$script:OnFramework = if ($PSVersionTable.PSVersion -ge '7.4') {
-    'net8.0'
-}
-else {
-    'netstandard2.0'
-}
+#region Import Binary Module function
+function LoadCorrectModule() {
+    # TODO: how to correctly load right version of binary cmdlet when publish the module?
+    # $script:OnFramework = if ($PSVersionTable.PSVersion -ge '7.4') {
+    #     'net8.0'
+    # }
+    # else {
+    #     'netstandard2.0'
+    # }
 
-Import-Module "$PSScriptRoot/GreeterCmdlet.dll"
+    if (-not (Get-Command Send-GreeterGrpcApi -ErrorAction SilentlyContinue)) {
+        Import-Module "$PSScriptRoot/GreeterCmdlet.dll"
+    }
+}
+#endregion
 
 function Invoke-GrpcGreeting() {
     [CmdletBinding()]
@@ -24,19 +30,29 @@ function Invoke-GrpcGreeting() {
         [Parameter(Mandatory = $true)]
         [string] $SenderName
     )
-    $request = New-Object -TypeName GreetingClientLib.DTOs.GreetingRequest
-    $request.GreeterName = $SenderName
-    $response = Send-GreeterGrpcApi -Server $script:ServerAddress -Request $request
+    begin {
+        LoadCorrectModule
+    }
+    process {
+        $request = New-Object -TypeName GreetingClientLib.DTOs.GreetingRequest
+        $request.GreeterName = $SenderName
+        $response = Send-GreeterGrpcApi -Server $script:ServerAddress -Request $request
 
-    return $response.Message
+        return $response.Message
+    }
 }
 
-function Invoke-GrpcHelloWrold() {
+function Invoke-GrpcHelloWorld() {
     [CmdletBinding()]
     [OutputType([string])]
     param()
-    $request = New-Object -TypeName GreetingClientLib.DTOs.GreetingRequest
-    $response = Send-GreeterGrpcApi -Server $script:ServerAddress -Request $request
+    begin {
+        LoadCorrectModule
+    }
+    process {
+        $request = New-Object -TypeName GreetingClientLib.DTOs.GreetingRequest
+        $response = Send-GreeterGrpcApi -Server $script:ServerAddress -Request $request
 
-    return $response.Message
+        return $response.Message
+    }
 }

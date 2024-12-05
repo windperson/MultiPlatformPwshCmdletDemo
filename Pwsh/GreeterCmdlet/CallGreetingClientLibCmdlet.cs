@@ -19,13 +19,16 @@ public class CallGreetingClientLibCmdlet : PSCmdlet
     // ReSharper disable once MemberCanBePrivate.Global
     [Parameter(Mandatory = false)] public IGreetingGrpcClient ApiClient { get; set; } = new GreetingClient();
 
-    protected override void ProcessRecord()
+    protected override void BeginProcessing()
     {
         if (ApiClient is GreetingClient greetingClient)
         {
             greetingClient.ServerUrl = $"https://{Server}";
         }
+    }
 
+    protected override void ProcessRecord()
+    {
         try
         {
             var reply = ApiClient.GetGreeting(Request);
@@ -35,5 +38,12 @@ public class CallGreetingClientLibCmdlet : PSCmdlet
         {
             WriteError(new ErrorRecord(ex, "GreeterClientCmdlet", ErrorCategory.NotSpecified, null));
         }
+    }
+    
+    // ReSharper disable once UnusedMember.Global
+    internal void ProcessInternalForTest() {
+        BeginProcessing();
+        ProcessRecord();
+        EndProcessing();
     }
 }

@@ -10,6 +10,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreetingGrpcService", "Grpc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreetingClientLib", "Grpc\GreetingClientLib\GreetingClientLib.csproj", "{508DD612-8C76-4397-9DAB-A4734BC24ADB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{72727791-E290-48DD-AD72-619DD7C1D49C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreeterCmdletTests", "tests\csharp\GreeterCmdletTests\GreeterCmdletTests.csproj", "{AF1A2AAB-9FB3-46D5-B5F4-4A40404398C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,10 +32,15 @@ Global
 		{508DD612-8C76-4397-9DAB-A4734BC24ADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{508DD612-8C76-4397-9DAB-A4734BC24ADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{508DD612-8C76-4397-9DAB-A4734BC24ADB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF1A2AAB-9FB3-46D5-B5F4-4A40404398C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF1A2AAB-9FB3-46D5-B5F4-4A40404398C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF1A2AAB-9FB3-46D5-B5F4-4A40404398C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF1A2AAB-9FB3-46D5-B5F4-4A40404398C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B9CDBD9A-73AB-4277-ADFB-2DF749B9C22C} = {9EEFA39D-B900-4E74-A507-F07DF0982AE7}
 		{5DB8C2B8-1570-48D7-8E5A-8FEAE58F1565} = {475E94CA-4842-45F8-A344-F903EFD2EC45}
 		{508DD612-8C76-4397-9DAB-A4734BC24ADB} = {475E94CA-4842-45F8-A344-F903EFD2EC45}
+		{AF1A2AAB-9FB3-46D5-B5F4-4A40404398C1} = {72727791-E290-48DD-AD72-619DD7C1D49C}
 	EndGlobalSection
 EndGlobal

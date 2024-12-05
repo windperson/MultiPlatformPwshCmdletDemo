@@ -7,7 +7,7 @@ using Grpc.Net.Client.Web;
 
 namespace GreetingClientLib;
 
-public class GreetingClient
+public class GreetingClient : IGreetingGrpcClient
 {
     public string ServerUrl { get; set; } = string.Empty;
 

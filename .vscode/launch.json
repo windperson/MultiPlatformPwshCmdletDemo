@@ -23,36 +23,45 @@
             }
         },
         {
-            "name": "Debug Pwsh C# module",
+            "name": "(Pwsh v7)Debug binary module",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build PowerShell Cmdlet",
             "program": "pwsh",
-            "args":[
-             "-NoExit",
-             "-NoProfile",
-             "-Command",
-             "Import-Module ${workspaceFolder}/Pwsh/GreeterCmdlet/bin/Debug/net8.0/GreeterCmdlet.psd1 -ArgumentList 'localhost:7121'"
+            "args": [
+                "-NoExit",
+                "-NoProfile",
+                "-Command",
+                "Import-Module ${workspaceFolder}/Pwsh/GreeterCmdlet/bin/Debug/net8.0/GreeterCmdlet.psd1 -ArgumentList 'localhost:7121'"
             ],
-            "cwd": "${workspaceFolder}/Pwsh/GreeterCmdlet",
+            "cwd": "${workspaceFolder}/Pwsh/debug_scripts",
             "stopAtEntry": false,
             "console": "integratedTerminal"
         },
         {
-            "name": "Debug Windows PowerShell C# module",
+            "name": "(Win)Debug binary module",
             "type": "clr",
             "request": "launch",
             "preLaunchTask": "build PowerShell Cmdlet",
             "program": "powershell",
-            "args":[
-             "-NoExit",
-             "-NoProfile",
-             "-Command",
-             "Import-Module ${workspaceFolder}/Pwsh/GreeterCmdlet/bin/Debug/netstandard2.0/GreeterCmdlet.psd1 -ArgumentList 'localhost:7121'"   
+            "args": [
+                "-NoExit",
+                "-NoProfile",
+                "-Command",
+                "Import-Module ${workspaceFolder}/Pwsh/GreeterCmdlet/bin/Debug/netstandard2.0/GreeterCmdlet.psd1 -ArgumentList 'localhost:7121'"
             ],
-            "cwd": "${workspaceFolder}/Pwsh/GreeterCmdlet",
+            "cwd": "${workspaceFolder}/Pwsh/debug_scripts",
             "stopAtEntry": false,
             "console": "integratedTerminal"
+        },
+        {
+            "name": "(Pwsh v7)Debug both Pwsh & C#",
+            "type": "PowerShell",
+            "request": "launch",
+            "preLaunchTask": "build PowerShell Cmdlet",
+            "script": "${workspaceFolder}/Pwsh/debug_scripts/debug-pwsh.ps1",
+            "createTemporaryIntegratedConsole": true,
+            "attachDotnetDebugger": true
         }
     ]
 }

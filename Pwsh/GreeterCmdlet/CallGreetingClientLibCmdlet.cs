@@ -14,15 +14,21 @@ public class CallGreetingClientLibCmdlet : PSCmdlet
     public string Server { get; set; } = string.Empty;
 
     // ReSharper disable once MemberCanBePrivate.Global
-    [Parameter(Mandatory = true)] 
-    public GreetingRequest Request { get; set; } = null!; 
-    
+    [Parameter(Mandatory = true)] public GreetingRequest Request { get; set; } = null!;
+
+    // ReSharper disable once MemberCanBePrivate.Global
+    [Parameter(Mandatory = false)] public IGreetingGrpcClient ApiClient { get; set; } = new GreetingClient();
+
     protected override void ProcessRecord()
     {
+        if (ApiClient is GreetingClient greetingClient)
+        {
+            greetingClient.ServerUrl = $"https://{Server}";
+        }
+
         try
         {
-            var client = new GreetingClient(){ ServerUrl = $"https://{Server}" };
-            var reply = client.GetGreeting(Request);
+            var reply = ApiClient.GetGreeting(Request);
             WriteObject(reply);
         }
         catch (Exception ex)

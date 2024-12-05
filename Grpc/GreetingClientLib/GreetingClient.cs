@@ -15,7 +15,7 @@ public class GreetingClient
     {
         using var channel = CreateGrpcChannel();
         var client = new Greeter.GreeterClient(channel);
-        var result = client.SayHello(new HelloRequest { Name = request.GreeterName });
+        var result = client.SayHello(new HelloRequest { Name = string.IsNullOrEmpty(request.GreeterName) ? "" : request.GreeterName });
         return new GreetingResponse { Message = result.Message };
     }
 

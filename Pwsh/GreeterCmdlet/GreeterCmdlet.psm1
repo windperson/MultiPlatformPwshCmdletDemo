@@ -17,7 +17,7 @@ else {
 
 Import-Module "$PSScriptRoot/GreeterCmdlet.dll"
 
-function Invoke-GrpcHello() {
+function Invoke-GrpcGreeting() {
     [CmdletBinding()]
     [OutputType([string])]
     param(
@@ -26,6 +26,16 @@ function Invoke-GrpcHello() {
     )
     $request = New-Object -TypeName GreetingClientLib.DTOs.GreetingRequest
     $request.GreeterName = $SenderName
+    $response = Send-GreeterGrpcApi -Server $script:ServerAddress -Request $request
+
+    return $response.Message
+}
+
+function Invoke-GrpcHelloWrold() {
+    [CmdletBinding()]
+    [OutputType([string])]
+    param()
+    $request = New-Object -TypeName GreetingClientLib.DTOs.GreetingRequest
     $response = Send-GreeterGrpcApi -Server $script:ServerAddress -Request $request
 
     return $response.Message

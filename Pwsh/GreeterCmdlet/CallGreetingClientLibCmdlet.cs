@@ -14,7 +14,7 @@ public class CallGreetingClientLibCmdlet : PSCmdlet
     public string Server { get; set; } = string.Empty;
 
     // ReSharper disable once MemberCanBePrivate.Global
-    [Parameter(Mandatory = false)] 
+    [Parameter(Mandatory = true)] 
     public GreetingRequest Request { get; set; } = null!; 
     
     protected override void ProcessRecord()

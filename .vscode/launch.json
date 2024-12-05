@@ -23,7 +23,7 @@
             }
         },
         {
-            "name": "Debug Pwsh module",
+            "name": "Debug Pwsh C# module",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build PowerShell Cmdlet",
@@ -32,14 +32,14 @@
              "-NoExit",
              "-NoProfile",
              "-Command",
-             "Import-Module ${workspaceFolder}/Pwsh/GreeterCmdlet/bin/Debug/net8.0/GreeterCmdlet.dll"   
+             "Import-Module ${workspaceFolder}/Pwsh/GreeterCmdlet/bin/Debug/net8.0/GreeterCmdlet.psd1 -ArgumentList 'localhost:7121'"
             ],
             "cwd": "${workspaceFolder}/Pwsh/GreeterCmdlet",
             "stopAtEntry": false,
             "console": "integratedTerminal"
         },
         {
-            "name": "Debug Windows PowerShell module",
+            "name": "Debug Windows PowerShell C# module",
             "type": "clr",
             "request": "launch",
             "preLaunchTask": "build PowerShell Cmdlet",
@@ -48,7 +48,7 @@
              "-NoExit",
              "-NoProfile",
              "-Command",
-             "Import-Module ${workspaceFolder}/Pwsh/GreeterCmdlet/bin/Debug/netstandard2.0/GreeterCmdlet.dll"   
+             "Import-Module ${workspaceFolder}/Pwsh/GreeterCmdlet/bin/Debug/netstandard2.0/GreeterCmdlet.psd1 -ArgumentList 'localhost:7121'"   
             ],
             "cwd": "${workspaceFolder}/Pwsh/GreeterCmdlet",
             "stopAtEntry": false,

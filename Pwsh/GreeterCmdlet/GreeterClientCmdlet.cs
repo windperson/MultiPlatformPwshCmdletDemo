@@ -1,4 +1,5 @@
 ﻿using System.Management.Automation;
+using GreetingClientLib;
 using GreetingGrpcService;
 using Grpc.Net.Client;
 
@@ -19,16 +20,8 @@ public class GreeterClientCmdlet : PSCmdlet
     {
         try
         {
-#if NETSTANDARD2_0
-            var channel = GrpcChannel.ForAddress($"https://{Server}", new GrpcChannelOptions
-            {
-                HttpHandler = new Grpc.Net.Client.Web.GrpcWebHandler(new HttpClientHandler())
-            });
-#elif NET8_0
-        var channel = GrpcChannel.ForAddress($"https://{Server}");
-#endif
-            var client = new Greeter.GreeterClient(channel);
-            var reply = client.SayHello(new HelloRequest { Name = Name });
+            var client = new GreetingClient(){ ServerUrl = $"https://{Server}" };
+            var reply = client.GetGreeting(new HelloRequest { Name = Name });
             WriteObject(reply.Message);
         }
         catch (Exception ex)

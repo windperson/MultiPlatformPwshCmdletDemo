@@ -30,7 +30,7 @@
     Copyright             = 'N/A'
 
     # Description of the functionality provided by this module
-    # Description = ''
+    Description = 'Send gRPC greetings request to a gRPC server'
 
     # Minimum version of the PowerShell engine required by this module
     # PowerShellVersion = ''

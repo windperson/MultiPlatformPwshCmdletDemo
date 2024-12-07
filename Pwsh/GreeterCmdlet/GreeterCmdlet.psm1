@@ -34,8 +34,7 @@ function Invoke-GrpcGreeting() {
         LoadCorrectModule
     }
     process {
-        $request = New-Object -TypeName GreetingClientLib.DTOs.GreetingRequest
-        $request.GreeterName = $SenderName
+        $request = New-Object -TypeName GreetingClientLib.DTOs.GreetingRequest -ArgumentList $SenderName
         $response = Send-GreeterGrpcApi -Server $script:ServerAddress -Request $request
 
         return $response.Message
@@ -50,7 +49,7 @@ function Invoke-GrpcHelloWorld() {
         LoadCorrectModule
     }
     process {
-        $request = New-Object -TypeName GreetingClientLib.DTOs.GreetingRequest
+        $request = New-Object -TypeName GreetingClientLib.DTOs.GreetingRequest -ArgumentList ""
         $response = Send-GreeterGrpcApi -Server $script:ServerAddress -Request $request
 
         return $response.Message

@@ -13,18 +13,21 @@ public class CallGreetingClientLibCmdletTests
     public void VerifyCmdletParameterAttributes()
     {
         var binaryCmdletType = typeof(CallGreetingClientLibCmdlet);
-        Assert.True(binaryCmdletType.CmdletParameterHasAttribute(nameof(CallGreetingClientLibCmdlet.Server), typeof(ParameterAttribute)));
-        Assert.True(binaryCmdletType.CmdletParameterHasAttribute(nameof(CallGreetingClientLibCmdlet.Request), typeof(ParameterAttribute)));
-        Assert.True(binaryCmdletType.CmdletParameterHasAttribute(nameof(CallGreetingClientLibCmdlet.ApiClient), typeof(ParameterAttribute)));
+        Assert.True(binaryCmdletType.CmdletParameterHasAttribute(nameof(CallGreetingClientLibCmdlet.Server),
+            typeof(ParameterAttribute)));
+        Assert.True(binaryCmdletType.CmdletParameterHasAttribute(nameof(CallGreetingClientLibCmdlet.Request),
+            typeof(ParameterAttribute)));
+        Assert.True(binaryCmdletType.CmdletParameterHasAttribute(nameof(CallGreetingClientLibCmdlet.ApiClient),
+            typeof(ParameterAttribute)));
     }
-    
+
     [Fact]
     public void ProcessRecord_ShouldWriteObject_WhenApiClientReturnsResponse()
     {
         // Arrange
         var mockApiClient = new Mock<IGreetingGrpcClient>();
-        var request = new GreetingRequest { GreeterName = "Test" };
-        var response = new GreetingResponse { Message = "Hello, Test!" };
+        var request = new GreetingRequest("Test");
+        var response = new GreetingResponse("Hello, Test!");
         mockApiClient.Setup(client => client.GetGreeting(request)).Returns(response);
 
         var cmdlet = new CallGreetingClientLibCmdlet
@@ -33,12 +36,12 @@ public class CallGreetingClientLibCmdletTests
             Request = request,
             ApiClient = mockApiClient.Object
         };
-        
+
         // Act
         var pipelineEmulator = new CommandRuntimeEmulator();
         cmdlet.CommandRuntime = pipelineEmulator;
         cmdlet.ProcessInternalForTest();
-        
+
         // Assert
         var results = pipelineEmulator.OutputObjects;
         Assert.Single(results);
@@ -52,7 +55,7 @@ public class CallGreetingClientLibCmdletTests
     {
         // Arrange
         var mockApiClient = new Mock<IGreetingGrpcClient>();
-        var request = new GreetingRequest { GreeterName = "Test" };
+        var request = new GreetingRequest("Test");
         var exception = new Exception("Test exception");
         mockApiClient.Setup(client => client.GetGreeting(request)).Throws(exception);
 
@@ -62,12 +65,12 @@ public class CallGreetingClientLibCmdletTests
             Request = request,
             ApiClient = mockApiClient.Object
         };
-        
+
         // Act
         var pipelineEmulator = new CommandRuntimeEmulator();
         cmdlet.CommandRuntime = pipelineEmulator;
         var threw = Record.Exception(() => cmdlet.ProcessInternalForTest());
-        
+
         // Assert
         Assert.Null(threw);
         var results = pipelineEmulator.OutputObjects;

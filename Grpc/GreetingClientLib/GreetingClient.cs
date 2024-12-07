@@ -13,10 +13,18 @@ public class GreetingClient : IGreetingGrpcClient
 
     public GreetingResponse GetGreeting(GreetingRequest request)
     {
+        var grpcRequest = new HelloRequest
+            { Name = string.IsNullOrEmpty(request.GreeterName) ? "" : request.GreeterName };
+
         using var channel = CreateGrpcChannel();
         var client = new Greeter.GreeterClient(channel);
-        var result = client.SayHello(new HelloRequest { Name = string.IsNullOrEmpty(request.GreeterName) ? "" : request.GreeterName });
-        return new GreetingResponse { Message = result.Message };
+        var grpcResponse = client.SayHello(grpcRequest);
+
+#if NETSTANDARD2_0
+        return new GreetingResponse { Message = grpcResponse.Message };
+#else
+        return new GreetingResponse(grpcResponse.Message);
+#endif
     }
 
 #if NETSTANDARD2_0

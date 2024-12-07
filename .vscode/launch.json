@@ -32,7 +32,7 @@
                 "-NoExit",
                 "-NoProfile",
                 "-Command",
-                "Import-Module ${workspaceFolder}/Pwsh/GreeterCmdlet/bin/Debug/net8.0/GreeterCmdlet.psd1 -ArgumentList 'localhost:7121'"
+                "Import-Module ${workspaceFolder}/Pwsh/GreeterCmdlet/bin/Debug/net8.0/GreeterCmdlet.dll"
             ],
             "cwd": "${workspaceFolder}/Pwsh/debug_scripts",
             "stopAtEntry": false,
@@ -48,7 +48,7 @@
                 "-NoExit",
                 "-NoProfile",
                 "-Command",
-                "Import-Module ${workspaceFolder}/Pwsh/GreeterCmdlet/bin/Debug/netstandard2.0/GreeterCmdlet.psd1 -ArgumentList 'localhost:7121'"
+                "Import-Module ${workspaceFolder}/Pwsh/GreeterCmdlet/bin/Debug/netstandard2.0/GreeterCmdlet.dll"
             ],
             "cwd": "${workspaceFolder}/Pwsh/debug_scripts",
             "stopAtEntry": false,

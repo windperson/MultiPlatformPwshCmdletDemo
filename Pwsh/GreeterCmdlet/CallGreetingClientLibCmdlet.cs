@@ -39,9 +39,13 @@ public class CallGreetingClientLibCmdlet : PSCmdlet
             WriteError(new ErrorRecord(ex, "GreeterClientCmdlet", ErrorCategory.NotSpecified, null));
         }
     }
-    
+
     // ReSharper disable once UnusedMember.Global
-    internal void ProcessInternalForTest() {
+    /// <summary>
+    /// This method is used for testing purposes only.
+    /// </summary>
+    internal void ProcessInternalForTest()
+    {
         BeginProcessing();
         ProcessRecord();
         EndProcessing();
